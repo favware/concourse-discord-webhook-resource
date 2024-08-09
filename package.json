@@ -1,0 +1,70 @@
+{
+	"name": "concourse-discord-webhook-resource",
+	"description": "Resource for ConcourseCI to send messages as a Discord webhook",
+	"license": "MIT",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"main": "dist/index.js",
+	"imports": {
+		"#lib/*": "./dist/lib/*.js",
+		"#root/*": "./dist/*.js"
+	},
+	"sideEffects": false,
+	"scripts": {
+		"build": "tsc",
+		"watch": "tsc -w",
+		"start": "node dist/index.js",
+		"lint": "eslint --format=pretty --ext ts --fix src",
+		"format": "prettier --log-level=warn --write .",
+		"bump": "cliff-jumper",
+		"check-update": "cliff-jumper --dry-run"
+	},
+	"dependencies": {
+		"@discordjs/core": "^1.2.0",
+		"@skyra/logger": "^2.0.3"
+	},
+	"devDependencies": {
+		"@commitlint/cli": "^19.3.0",
+		"@commitlint/config-conventional": "^19.2.2",
+		"@favware/cliff-jumper": "^4.0.3",
+		"@sapphire/prettier-config": "^2.0.0",
+		"@sapphire/ts-config": "^5.0.1",
+		"@types/node": "^22.1.0",
+		"eslint": "^8.57.0",
+		"eslint-config-neon": "^0.1.62",
+		"eslint-formatter-pretty": "5.0.0",
+		"eslint-plugin-prettier": "^5.2.1",
+		"lint-staged": "^15.2.8",
+		"prettier": "^3.3.3",
+		"typescript": "^5.5.4"
+	},
+	"resolutions": {
+		"@angular-eslint/eslint-plugin-template": "npm:@favware/skip-dependency@latest",
+		"@angular-eslint/eslint-plugin": "npm:@favware/skip-dependency@latest",
+		"@angular-eslint/template-parser": "npm:@favware/skip-dependency@latest",
+		"@next/eslint-plugin-next": "npm:@favware/skip-dependency@latest",
+		"astro-eslint-parser": "npm:@favware/skip-dependency@latest",
+		"eslint-plugin-astro": "npm:@favware/skip-dependency@latest",
+		"eslint-plugin-cypress": "npm:@favware/skip-dependency@latest",
+		"eslint-plugin-jsx-a11y": "npm:@favware/skip-dependency@latest",
+		"eslint-plugin-mdx": "npm:@favware/skip-dependency@latest",
+		"eslint-plugin-react-hooks": "npm:@favware/skip-dependency@latest",
+		"eslint-plugin-react": "npm:@favware/skip-dependency@latest",
+		"eslint-plugin-rxjs-angular": "npm:@favware/skip-dependency@latest",
+		"eslint-plugin-rxjs": "npm:@favware/skip-dependency@latest",
+		"eslint-plugin-svelte3": "npm:@favware/skip-dependency@latest",
+		"eslint-plugin-vue": "npm:@favware/skip-dependency@latest",
+		"vue-eslint-parser": "npm:@favware/skip-dependency@latest"
+	},
+	"commitlint": {
+		"extends": [
+			"@commitlint/config-conventional"
+		]
+	},
+	"lint-staged": {
+		"*": "prettier --ignore-unknown --write",
+		"*.{mjs,js,ts,tsx}": "eslint --fix --ext mjs,js,ts,tsx"
+	},
+	"packageManager": "yarn@4.4.0"
+}

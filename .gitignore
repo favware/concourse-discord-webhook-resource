@@ -1,0 +1,12 @@
+.DS_Store
+node_modules/
+
+# Yarn files
+.yarn/install-state.gz
+.yarn/build-state.yml
+
+# Env files
+.env*
+
+# Output
+dist/
