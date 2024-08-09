@@ -1,14 +1,83 @@
 <div align="center">
 
-# Discord Application Emojis Manager
+# Concourse Discord Webhook Resource
 
-**A NodeJS CLI to manage emojis for Discord Applications**
+**Resource for ConcourseCI to send messages as a Discord webhook**
 
 [![GitHub](https://img.shields.io/github/license/favware/discord-application-emojis-manager)](https://github.com/favware/discord-application-emojis-manager/blob/main/LICENSE)
 
 [![Support Server](https://discord.com/api/guilds/512303595966824458/embed.png?style=banner2)](https://join.favware.tech)
 
 </div>
+
+## Usage
+
+### Resource Type Configuration
+
+```yaml
+resource_types:
+  - name: discord-webhook-resource
+    type: docker-image
+    source:
+      repository: favware/concourse-discord-webhook-resource
+```
+
+### Resource Configuration Example
+
+```yaml
+resources:
+  - name: discord
+    type: discord-webhook-resource
+    check_every: 999999h
+    source:
+      token: ((token))
+```
+
+## Behaviour
+
+### `check`: Not implemented.
+
+### `in`: Not implemented.
+
+### `out`: Send message using a webhook.
+
+Send message using a Discord webhook with the configured parameters. Parameters
+can be passed in using the
+[params](https://concourse-ci.org/jobs.html#schema.step.put-step.params) key on
+the `put` step or passed in via files.
+
+#### Parameters: `params`
+
+**The parameters mimic the bulk of the parameters from
+https://discord.com/developers/docs/resources/webhook#execute-webhook.**
+
+- `content` (**required**) (_string_): The message contents (up to 2000
+  characters)
+- `username` (_string_): Override the default username of the webhook
+- `avatar_url` (_string)_: Any text wanted to ultimately appear on the page as
+  the title of the message.
+- `allowed_mentions_roles` (_array of strings_): Roles that are allowed to be
+  mentioned (default: `[]`).
+- `allowed_mentions_users` (_array of strings_): Users that are allowed to be
+  mentioned (default: `[]`).
+- `allowed_mentions_everyone` (_boolean_): Whether `@everyone` and `@here` are
+  allowed to be mentioned (default: `false`)
+- `flags` (_integer_):
+  [message flags](https://discord.com/developers/docs/resources/message#message-object-message-flags)
+  combined as a [bitfield](https://en.wikipedia.org/wiki/Bit_field) (only
+  `SUPPRESS_EMBEDS` and `SUPPRESS_NOTIFICATIONS` can be set can be set)
+
+## Usage Examples
+
+```yaml
+jobs:
+  - name: discord-send
+    plan:
+      - put: discord
+        params:
+          content: |
+            "Hello world!"
+```
 
 ## Buy us some doughnuts
 
