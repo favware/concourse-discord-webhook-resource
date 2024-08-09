@@ -14,32 +14,81 @@
 
 ### Resource Type Configuration
 
+> [!NOTE]
+>
+> `docker.io` is the default public registry, https://hub.docker.com.
+
 ```yaml
 resource_types:
   - name: discord-webhook-resource
-    type: docker-image
+    type: registry-image
     source:
-      repository: favware/concourse-discord-webhook-resource
+      repository: docker.io/favware/concourse-discord-webhook-resource
+      tag: latest
+    check_every: 24h
 ```
+
+**Alternatively pull the image from the GitHub registry**
+
+```yaml
+resource_types:
+  - name: discord-webhook-resource
+    type: registry-image
+    source:
+      repository: ghcr.io/favware/concourse-discord-webhook-resource
+      tag: latest
+    check_every: 24h
+```
+
+> [!NOTE]
+>
+> The `tag: latest` source property is optional, as the value `latest` in the
+> default.
 
 ### Resource Configuration Example
 
+To setup an incoming webhook, create it in Discord on the desired channel, then
+configure the URL in the resource configuration.
+
+- `url` (**required**) (_string_): The webhook URL as provided by Discord.
+  Always in the format: `https://discord.com/api/webhooks/XXXX/ZZZZ` wherein
+  `XXXX` is the webhook ID and `ZZZZ` is the webhook token.
+
+- `insecure`: _Optional._ Connect to Slack insecurely - i.e. skip SSL
+  validation. Defaults to `false` if not provided.
+
+- `proxy`: _Optional._ Connect to Slack using an HTTP(S) proxy. In the form:
+  `http://my.proxy:3128`.
+
+- `disable`: _Optional._ Set to `true` to skip all messaging. Convenient for
+  temporarily disabling notifications without editing your pipelines.
+
+#### Example
+
 ```yaml
 resources:
-  - name: discord
+  - name: discord-notification
     type: discord-webhook-resource
-    check_every: 999999h
+    icon: discord
+    check_every: 24h
     source:
-      token: ((token))
+      url: https://discord.com/api/webhooks/XXXX/ZZZZ
 ```
 
 ## Behaviour
 
-### `check`: Not implemented.
+### `check` Step (`check` script): No operation
 
-### `in`: Not implemented.
+Checking for new version always returns the last timestamp-based dummy version,
+created when the last `put` step was executed on this resource.
 
-### `out`: Send message using a webhook.
+### `get` Step (`in` script): No operation
+
+Getting a new version of this resource does nothing else that always returning
+the last timestamp-based dummy version, created when the last `put` step was
+executed on this resource.
+
+### `put` Step (`out` script): Sends a message to Discord.
 
 Send message using a Discord webhook with the configured parameters. Parameters
 can be passed in using the
@@ -52,7 +101,8 @@ the `put` step or passed in via files.
 https://discord.com/developers/docs/resources/webhook#execute-webhook.**
 
 - `content` (**required**) (_string_): The message contents (up to 2000
-  characters)
+  characters). For formatting your content see
+  [Markdown Text 101](https://support.discord.com/hc/en-us/articles/210298617-Markdown-Text-101-Chat-Formatting-Bold-Italic-Underline).
 - `username` (_string_): Override the default username of the webhook
 - `avatar_url` (_string)_: Any text wanted to ultimately appear on the page as
   the title of the message.
@@ -73,10 +123,13 @@ https://discord.com/developers/docs/resources/webhook#execute-webhook.**
 jobs:
   - name: discord-send
     plan:
-      - put: discord
+      - put: discord-notification
         params:
           content: |
-            "Hello world!"
+            The build had a result. Check it out at:
+            http://my.concourse.url/teams/${BUILD_TEAM_NAME}/pipelines/${BUILD_PIPELINE_NAME}/jobs/${BUILD_JOB_NAME}/builds/${BUILD_NAME}
+            or at:
+            http://my.concourse.url/builds/${BUILD_ID}
 ```
 
 ## Buy us some doughnuts
