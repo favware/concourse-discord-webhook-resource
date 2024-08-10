@@ -1,0 +1,22 @@
+FROM node:20-alpine3.20
+
+ENV CI true
+
+ENV FLY_VERSION 7.11.2
+ENV YARN_VERSION=4.4.0
+ENV TRANSCRYPT_URL "https://raw.githubusercontent.com/elasticdog/transcrypt/v2.2.3/transcrypt"
+ENV FLY_URL "https://github.com/concourse/concourse/releases/download/v${FLY_VERSION}/fly-${FLY_VERSION}-linux-amd64.tgz"
+ENV LANG en_US.UTF-8 LANGUAGE=en_US:en LC_ALL=en_US.UTF-8
+
+RUN echo fs.inotify.max_user_watches=524288 | tee -a /etc/sysctl.conf && sysctl -p && \
+    # Install dependencies
+    apk --update --no-cache add openssh bash bzip2 coreutils curl jq git-lfs gzip openssl tar wget zip util-linux python3 python3-dev musl-dev py-pip moreutils make sed gcc yq-go && \
+    # Download Transcrypt
+    wget -q ${TRANSCRYPT_URL} -O /usr/local/bin/transcrypt && \
+    # Download Fly
+    wget -q ${FLY_URL} -O fly.tgz && tar -C /usr/local/bin -xzf fly.tgz && rm fly.tgz && \
+    chmod +x /usr/local/bin/transcrypt /usr/local/bin/fly && \
+    corepack enable && corepack install --global yarn@${YARN_VERSION} && \
+    rm -rf /var/lib/apt/lists/*
+
+CMD ["/bin/bash"]

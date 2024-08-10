@@ -6,3 +6,13 @@ services:
     tty: true
     stdin_open: true
     command: /bin/bash
+
+  taskrunner:
+    image: ghcr.io/favware/concource-taskrunner:dev
+    build:
+      context: .
+      dockerfile: Dockerfile.taskrunner
+    container_name: taskrunner
+    tty: true
+    stdin_open: true
+    command: /bin/bash
