@@ -17,25 +17,25 @@ cat > "${payload}" <&0
 
 timestamp="$(jq -n "{version:{timestamp:\"$(date +%s)\"}}")"
 
-disable="$(jq -r '.source.disable' < "${payload}")"
-if [[ "$disable" == "true" ]]
-then
+disable="$(jq '.source.disable' < "${payload}")"
+
+if [ "${disable}" = "true" ]; then
     echo "$timestamp" >&3
     exit 0
 fi
 
-webhook_url="$(jq -r '.source.url' < "${payload}")"
-allow_insecure="$(jq -r '.source.insecure // "false"' < "${payload}")"
-proxy="$(jq -r '.source.proxy // "null"' < "${payload}")"
+webhook_url="$(jq '.source.url' < "${payload}")"
+allow_insecure="$(jq '.source.insecure // false' < "${payload}")"
+proxy="$(jq '.source.proxy // null' < "${payload}")"
 
-content="$(jq -r '.params.content // ""' < "${payload}")"
+content="$(jq '.params.content' < "${payload}")"
 username="$(jq '(.params.username // null)' < "${payload}")"
 avatar_url="$(jq '(.params.avatar_url // null)' < "${payload}")"
 allowed_role_mentions="$(jq '(.params.allowed_mentions.roles // [])' < "${payload}")"
 allowed_user_mentions="$(jq '(.params.allowed_mentions.users // [])' < "${payload}")"
-suppress_embeds="$(jq '(.params.flags.suppress_embeds // "false")' < "${payload}")"
-suppress_notifications="$(jq '(.params.flags.suppress_notifications // "false")' < "${payload}")"
-verbose="$(jq '(.params.verbose // "false")' < "${payload}")"
+suppress_embeds="$(jq '(.params.flags.suppress_embeds // false)' < "${payload}")"
+suppress_notifications="$(jq '(.params.flags.suppress_notifications // false)' < "${payload}")"
+verbose="$(jq '(.params.verbose // false)' < "${payload}")"
 
 allowed_role_mentions_options=""
 
