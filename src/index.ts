@@ -1,4 +1,5 @@
 import { container } from '#lib/utils/container';
+import { insertEnvVars } from '#lib/utils/insertEnvVars';
 import { obfuscateWebhookUrl, UnboundWebhookRegex } from '#lib/utils/obfuscateWebhookUrl';
 import { preflightChecks } from '#lib/utils/preflightChecks';
 import { setupLogger } from '#lib/utils/setup-logger';
@@ -87,7 +88,7 @@ try {
 	await rest.post(Routes.webhook(hookId, hookToken), {
 		auth: false,
 		body: {
-			content: checkedOptions.content,
+			content: insertEnvVars(checkedOptions.content),
 			allowed_mentions: {
 				users: checkedOptions['allowed-user-mentions'],
 				roles: checkedOptions['allowed-role-mentions']
