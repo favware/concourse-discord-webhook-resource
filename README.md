@@ -10,6 +10,11 @@
 
 </div>
 
+> [!IMPORTANT]
+>
+> This has only been tested with ConcourseCI 7.11.2 and may not work with older
+> versions.
+
 ## Usage
 
 ### Resource Type Configuration
@@ -104,7 +109,8 @@ https://discord.com/developers/docs/resources/webhook#execute-webhook.**
   characters). For formatting your content see
   [Markdown Text 101](https://support.discord.com/hc/en-us/articles/210298617-Markdown-Text-101-Chat-Formatting-Bold-Italic-Underline).
 
-You can add the following parameters in your content that will be replaced with their respective ConcourseCI values:
+You can add the following parameters in your content that will be replaced with
+their respective ConcourseCI values:
 
 - ATC_EXTERNAL_URL - The external URL to your ConcourseCI instance
 - BUILD_ID - The ID of the build
@@ -132,7 +138,8 @@ To insert these values, use the following syntax: `${BUILD_ID}` or `$BUILD_ID`
     this message (default: `false`).
   - `.suppress_notifications` (_boolean_): This message will not trigger push
     and desktop notifications (default: `false`).
-- `verbose` (_boolean_): Whether to print verbose messages during the process (useful for debugging) (default: `false`).
+- `verbose` (_boolean_): Whether to print verbose messages during the process
+  (useful for debugging) (default: `false`).
 
 ## Usage Examples
 
