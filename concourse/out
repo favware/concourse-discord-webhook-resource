@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-# set -e
+set -e
 
 cd "${1}"
 
@@ -35,8 +35,8 @@ proxy="$(jq -r '.source.proxy // "null"' < "${payload}")"
 content="$(jq -r '.params.content // ""' < "${payload}")"
 username="$(jq '(.params.username // null)' < "${payload}")"
 avatar_url="$(jq '(.params.avatar_url // null)' < "${payload}")"
-allowed_role_mentions="$(jq '(.params.allowed_mentions.roles // "[]")[]' < "${payload}")"
-allowed_user_mentions="$(jq '(.params.allowed_mentions.users // "[]")[]' < "${payload}")"
+allowed_role_mentions="$(jq '(.params.allowed_mentions.roles // [])' < "${payload}")"
+allowed_user_mentions="$(jq '(.params.allowed_mentions.users // [])' < "${payload}")"
 suppress_embeds="$(jq '(.params.flags.suppress_embeds // "false")' < "${payload}")"
 suppress_notifications="$(jq '(.params.flags.suppress_notifications // "false")' < "${payload}")"
 verbose="$(jq '(.params.verbose // "false")' < "${payload}")"
@@ -52,22 +52,29 @@ echo "allowed_user_mentions: ${allowed_user_mentions}"
 echo "suppress_embeds: ${suppress_embeds}"
 echo "suppress_notifications: ${suppress_notifications}"
 echo "verbose: ${verbose}"
-echo "other params: $(jq -r '.params' < "${payload}")"
 
 allowed_role_mentions_options=""
 
-for role in $allowed_role_mentions; do
-  allowed_role_mentions_options+="--allowed-role-mentions \"$role\" "
-done
+allowed_roles_count=$(echo $allowed_role_mentions | jq '. | length')
+if [ $allowed_roles_count -gt 0 ]; then
+  echo "in the if"
+  for i in $(seq 0 $(($allowed_roles_count - 1))); do
+    allowed_role_mentions_options="${allowed_role_mentions_options}$(echo "--allowed-role-mentions \"$(echo $allowed_role_mentions | jq -r ".[$i]")\" ")"
+  done
+fi
 
 allowed_user_mentions_options=""
 
-for user in $allowed_user_mentions; do
-  allowed_user_mentions_options+="--allowed-user-mentions \"$user\" "
-done
+allowed_users_count=$(echo $allowed_user_mentions | jq '. | length')
+if [ $allowed_users_count -gt 0 ]; then
+  echo "in the if"
+  for i in $(seq 0 $(($allowed_users_count - 1))); do
+    allowed_user_mentions_options="${allowed_user_mentions_options}$(echo "--allowed-user-mentions \"$(echo $allowed_user_mentions | jq -r ".[$i]")\" ")"
+  done
+fi
 
-echo "allowed_role_mentions_options: ${$allowed_role_mentions_options}"
-echo "allowed_user_mentions_options: ${$allowed_user_mentions_options}"
+echo "allowed_role_mentions_options: ${allowed_role_mentions_options}"
+echo "allowed_user_mentions_options: ${allowed_user_mentions_options}"
 
 echo "--------------------------------------------------------------------------------------"
 
@@ -82,8 +89,8 @@ node /usr/src/app/dist/index.js \
     --content "${content}" \
     --username "${username}" \
     --avatar-url "${avatar_url}" \
-    ${$allowed_role_mentions_options} \
-    ${$allowed_user_mentions_options} \
+    ${allowed_role_mentions_options} \
+    ${allowed_user_mentions_options} \
     --suppress-embeds "${suppress_embeds}" \
     --suppress-notifications "${suppress_notifications}" \
     --verbose "${verbose}"
