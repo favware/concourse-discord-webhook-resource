@@ -35,7 +35,6 @@ proxy="$(jq -r '.source.proxy // "null"' < "${payload}")"
 content="$(jq -r '.params.content // ""' < "${payload}")"
 username="$(jq '(.params.username // null)' < "${payload}")"
 avatar_url="$(jq '(.params.avatar_url // null)' < "${payload}")"
-# TODO: Parse out the array
 allowed_role_mentions="$(jq '(.params.allowed_mentions.roles // "[]")[]' < "${payload}")"
 allowed_user_mentions="$(jq '(.params.allowed_mentions.users // "[]")[]' < "${payload}")"
 suppress_embeds="$(jq '(.params.flags.suppress_embeds // "false")' < "${payload}")"
@@ -53,7 +52,7 @@ echo "allowed_user_mentions: ${allowed_user_mentions}"
 echo "suppress_embeds: ${suppress_embeds}"
 echo "suppress_notifications: ${suppress_notifications}"
 echo "verbose: ${verbose}"
-echo "other params: $(jq -r '.params')"
+echo "other params: $(jq -r '.params' < "${payload}")"
 
 allowed_role_mentions_options=""
 
