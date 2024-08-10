@@ -14,9 +14,7 @@
 		"project": "./tsconfig.base.json"
 	},
 	"rules": {
-		"n/no-sync": "off",
-		"n/shebang": "off",
-
+		"import/order": "off",
 		"@typescript-eslint/consistent-type-definitions": "off"
 	}
 }
