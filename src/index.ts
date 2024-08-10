@@ -1,4 +1,5 @@
 import { container } from '#lib/utils/container';
+import { getProxyAgent } from '#lib/utils/getProxyAgent';
 import { insertEnvVars } from '#lib/utils/insertEnvVars';
 import { obfuscateWebhookUrl, UnboundWebhookRegex } from '#lib/utils/obfuscateWebhookUrl';
 import { preflightChecks } from '#lib/utils/preflightChecks';
@@ -7,7 +8,6 @@ import { REST } from '@discordjs/rest';
 import { MessageFlags, Routes, type RESTPostAPIWebhookWithTokenJSONBody } from 'discord-api-types/v10';
 import { exit } from 'node:process';
 import { inspect, parseArgs } from 'node:util';
-import { ProxyAgent } from 'undici';
 
 export type OptionsType = typeof values;
 
@@ -68,9 +68,7 @@ const checkedOptions = preflightChecks(values);
 
 logResolvedOptions(checkedOptions);
 
-const proxyAgent = typeof checkedOptions.proxy === 'string' ? new ProxyAgent(checkedOptions.proxy) : undefined;
-
-const rest = new REST({ version: '10', agent: proxyAgent });
+const rest = new REST({ version: '10', agent: getProxyAgent(checkedOptions) });
 
 const webhookRegexResult = UnboundWebhookRegex.exec(checkedOptions['webhook-url']);
 
