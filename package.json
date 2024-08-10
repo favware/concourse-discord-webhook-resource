@@ -13,7 +13,7 @@
 	},
 	"sideEffects": false,
 	"scripts": {
-		"typecheck": "tsc",
+		"typecheck": "tsc -b src",
 		"build": "tsup",
 		"lint": "eslint --format=pretty --ext ts --fix src",
 		"format": "prettier --log-level=warn --write .",
