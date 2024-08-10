@@ -59,5 +59,9 @@ export function preflightChecks(options: OptionsType): CheckedOptionsType {
 		}
 	}
 
+	if (typeof options.content === 'string' && options.content.endsWith('\\n')) {
+		options.content = options.content.slice(0, -2);
+	}
+
 	return options as CheckedOptionsType;
 }
