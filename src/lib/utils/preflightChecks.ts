@@ -31,6 +31,32 @@ export function preflightChecks(options: OptionsType): CheckedOptionsType {
 		if (value === 'null' || value === 'undefined' || (typeof value === 'string' && value.trim().length === 0)) {
 			Reflect.deleteProperty(options, key);
 		}
+
+		if (
+			typeof value === 'string' &&
+			(value.startsWith('"') || value.startsWith("'") || value.startsWith('`')) &&
+			(value.endsWith('"') || value.endsWith("'") || value.endsWith('`'))
+		) {
+			Reflect.set(options, key, value.slice(1, -1));
+		}
+
+		if (Array.isArray(value)) {
+			Reflect.set(
+				options,
+				key,
+				value.map((arrayValue) => {
+					if (
+						typeof arrayValue === 'string' &&
+						(arrayValue.startsWith('"') || arrayValue.startsWith("'") || arrayValue.startsWith('`')) &&
+						(arrayValue.endsWith('"') || arrayValue.endsWith("'") || arrayValue.endsWith('`'))
+					) {
+						return arrayValue.slice(1, -1);
+					}
+
+					return arrayValue;
+				})
+			);
+		}
 	}
 
 	return options as CheckedOptionsType;
