@@ -144,9 +144,9 @@ jobs:
         params:
           content: |
             The build had a result. Check it out at:
-            http://my.concourse.url/teams/${BUILD_TEAM_NAME}/pipelines/${BUILD_PIPELINE_NAME}/jobs/${BUILD_JOB_NAME}/builds/${BUILD_NAME}
+            ${ATC_EXTERNAL_URL}/teams/${BUILD_TEAM_NAME}/pipelines/${BUILD_PIPELINE_NAME}/jobs/${BUILD_JOB_NAME}/builds/${BUILD_NAME}
             or at:
-            http://my.concourse.url/builds/${BUILD_ID}
+            ${ATC_EXTERNAL_URL}/builds/${BUILD_ID}
 ```
 
 **With all parameters**
@@ -159,9 +159,9 @@ jobs:
         params:
           content: |
             The build had a result. Check it out at:
-            http://my.concourse.url/teams/${BUILD_TEAM_NAME}/pipelines/${BUILD_PIPELINE_NAME}/jobs/${BUILD_JOB_NAME}/builds/${BUILD_NAME}
+            ${ATC_EXTERNAL_URL}/teams/${BUILD_TEAM_NAME}/pipelines/${BUILD_PIPELINE_NAME}/jobs/${BUILD_JOB_NAME}/builds/${BUILD_NAME}
             or at:
-            http://my.concourse.url/builds/${BUILD_ID}
+            ${ATC_EXTERNAL_URL}/builds/${BUILD_ID}
           username: ConcourseCI
           avatar_url: https://github.com/cloudfoundry-community.png
           allowed_mentions:
