@@ -2,7 +2,7 @@ import { container } from '#lib/utils/container';
 import { insertEnvVars } from '#lib/utils/insertEnvVars';
 import { obfuscateWebhookUrl, UnboundWebhookRegex } from '#lib/utils/obfuscateWebhookUrl';
 import { preflightChecks } from '#lib/utils/preflightChecks';
-import { setupLogger } from '#lib/utils/setup-logger';
+import { logResolvedOptions, setupLogger } from '#lib/utils/setup-logger';
 import { REST } from '@discordjs/rest';
 import { MessageFlags, Routes, type RESTPostAPIWebhookWithTokenJSONBody } from 'discord-api-types/v10';
 import { exit } from 'node:process';
@@ -65,6 +65,8 @@ const { values } = parseArgs({
 setupLogger(values);
 
 const checkedOptions = preflightChecks(values);
+
+logResolvedOptions(checkedOptions);
 
 const proxyAgent = typeof checkedOptions.proxy === 'string' ? new ProxyAgent(checkedOptions.proxy) : undefined;
 

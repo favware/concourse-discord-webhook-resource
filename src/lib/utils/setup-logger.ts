@@ -1,5 +1,6 @@
 import { container } from '#lib/utils/container';
 import { obfuscateWebhookUrl } from '#lib/utils/obfuscateWebhookUrl';
+import type { CheckedOptionsType } from '#lib/utils/preflightChecks';
 import type { OptionsType } from '#root/index';
 import { Logger } from '@skyra/logger';
 
@@ -8,12 +9,12 @@ function stringify(object: unknown): string {
 }
 
 export function setupLogger(options: OptionsType) {
-	const logger = new Logger({ level: options.verbose ? Logger.Level.Debug : Logger.Level.Info });
+	container.logger = new Logger({ level: options.verbose ? Logger.Level.Debug : Logger.Level.Info });
+}
 
-	container.logger = logger;
-
+export function logResolvedOptions(options: CheckedOptionsType) {
 	const clonedRunArgs = JSON.parse(JSON.stringify(options)) as OptionsType;
 	clonedRunArgs['webhook-url'] = obfuscateWebhookUrl(clonedRunArgs['webhook-url']);
 
-	logger.debug('resolved options: \n', stringify(clonedRunArgs));
+	container.logger.debug('resolved options: \n', stringify(clonedRunArgs));
 }

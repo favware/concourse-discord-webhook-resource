@@ -27,5 +27,11 @@ export function preflightChecks(options: OptionsType): CheckedOptionsType {
 		exit(1);
 	}
 
+	for (const [key, value] of Object.entries(options)) {
+		if (value === 'null' || value === 'undefined' || (typeof value === 'string' && value.trim().length === 0)) {
+			Reflect.deleteProperty(options, key);
+		}
+	}
+
 	return options as CheckedOptionsType;
 }
