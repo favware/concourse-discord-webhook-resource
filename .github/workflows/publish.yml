@@ -97,4 +97,3 @@ jobs:
           repository: favware/concource-discord-webhook-resource
           enable-url-completion: true
           short-description: Extensive Pokemon GraphQL API
-
