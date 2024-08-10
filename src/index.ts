@@ -64,12 +64,8 @@ const { values } = parseArgs({
 
 setupLogger(values);
 
-container.logger.debug('options before parsing:');
-logResolvedOptions(values as any);
-
 const checkedOptions = preflightChecks(values);
 
-container.logger.debug('options after parsing:');
 logResolvedOptions(checkedOptions);
 
 const rest = new REST({ version: '10', agent: getProxyAgent(checkedOptions) });
@@ -87,17 +83,6 @@ const shouldSuppressNotifications = checkedOptions['suppress-notifications'] ? M
 const shouldSuppressEmbeds = checkedOptions['suppress-embeds'] ? MessageFlags.SuppressEmbeds : 0;
 
 container.logger.info('Sending message to the configured webhook...');
-
-container.logger.debug('Payload going in: ', {
-	content: insertEnvVars(checkedOptions.content),
-	allowed_mentions: {
-		users: checkedOptions['allowed-user-mentions'],
-		roles: checkedOptions['allowed-role-mentions']
-	},
-	avatar_url: checkedOptions['avatar-url'],
-	username: checkedOptions.username,
-	flags: shouldSuppressEmbeds | shouldSuppressNotifications
-} satisfies RESTPostAPIWebhookWithTokenJSONBody);
 
 try {
 	await rest.post(Routes.webhook(hookId, hookToken), {

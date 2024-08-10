@@ -71,22 +71,6 @@ if [ "${suppress_notifications}" = "true" ]; then
   suppress_notifications_option="--suppress-notifications"
 fi
 
-echo "payload: $(cat ${payload})"
-echo "------------------------------------------"
-echo "verbose: ${verbose}"
-echo "allowed_user_mentions: ${allowed_user_mentions}"
-echo "allowed_role_mentions: ${allowed_role_mentions}"
-echo "allow_insecure: ${allow_insecure}"
-echo "suppress_embeds: ${suppress_embeds}"
-echo "suppress_notifications: ${suppress_notifications}"
-echo "----------------------------------------"
-echo "verbose_option: ${verbose_option}"
-echo "allowed_user_mentions_options: ${allowed_user_mentions_options}"
-echo "allowed_role_mentions_options: ${allowed_role_mentions_options}"
-echo "allow_insecure_option: ${allow_insecure_option}"
-echo "suppress_embeds_option: ${suppress_embeds_option}"
-echo "suppress_notifications_option: ${suppress_notifications_option}"
-
 node /usr/src/app/dist/index.js \
     --webhook-url "${webhook_url}" \
     ${allow_insecure_option} \
