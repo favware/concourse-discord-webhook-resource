@@ -64,11 +64,11 @@ if [ "${allow_insecure}" = "true" ]; then
 fi
 
 if [ "${suppress_embeds}" = "true" ]; then
-  suppress_embeds_option="--allow-insecure"
+  suppress_embeds_option="--suppress-embeds"
 fi
 
 if [ "${suppress_notifications}" = "true" ]; then
-  suppress_notifications_option="--allow-insecure"
+  suppress_notifications_option="--suppress-notifications"
 fi
 
 echo "payload: $(cat ${payload})"
