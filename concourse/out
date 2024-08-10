@@ -4,8 +4,8 @@ set -e
 
 cd "${1}"
 
-exec 3>&1
-exec 1>&2
+exec 3>&1 # make stdout available as fd 3 for the result
+exec 1>&2 # redirect all output to stderr for logging
 set +x
 
 # for jq
@@ -68,6 +68,6 @@ node /usr/src/app/dist/index.js \
     ${allowed_user_mentions_options} \
     --suppress-embeds "${suppress_embeds}" \
     --suppress-notifications "${suppress_notifications}" \
-    --verbose "${verbose}"
+    --verbose "${verbose}" >&3
 
 echo "$timestamp" | jq -s add >&3
