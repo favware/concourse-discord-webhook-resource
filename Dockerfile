@@ -7,6 +7,8 @@ WORKDIR /usr/src/app
 ENV YARN_DISABLE_GIT_HOOKS=1
 ENV CI=true
 
+RUN apk add --no-cache jq
+
 COPY --chown=node:node yarn.lock .
 COPY --chown=node:node package.json .
 COPY --chown=node:node .yarnrc.yml .
