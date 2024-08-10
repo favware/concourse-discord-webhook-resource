@@ -1,0 +1,8 @@
+services:
+  dev:
+    image: ghcr.io/favware/concource-discord-webhook-resource:dev
+    container_name: concourse-discord-webhook-resource-dev
+    build: .
+    tty: true
+    stdin_open: true
+    command: /bin/bash

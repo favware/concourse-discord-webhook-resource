@@ -106,16 +106,18 @@ https://discord.com/developers/docs/resources/webhook#execute-webhook.**
 - `username` (_string_): Override the default username of the webhook
 - `avatar_url` (_string)_: Any text wanted to ultimately appear on the page as
   the title of the message.
-- `allowed_mentions_roles` (_array of strings_): Roles that are allowed to be
-  mentioned (default: `[]`).
-- `allowed_mentions_users` (_array of strings_): Users that are allowed to be
-  mentioned (default: `[]`).
-- `allowed_mentions_everyone` (_boolean_): Whether `@everyone` and `@here` are
-  allowed to be mentioned (default: `false`)
-- `flags` (_integer_):
+- `allowed_mentions` (_object_): Allowed mentions for the message.
+  - `.roles` (_array of strings_): Roles that are allowed to be mentioned
+    (default: `[]`).
+  - `.users` (_array of strings_): Users that are allowed to be mentioned
+    (default: `[]`).
+- `flags` (_object_): An object of the allowed values from
   [message flags](https://discord.com/developers/docs/resources/message#message-object-message-flags)
-  combined as a [bitfield](https://en.wikipedia.org/wiki/Bit_field) (only
-  `SUPPRESS_EMBEDS` and `SUPPRESS_NOTIFICATIONS` can be set can be set)
+  - `.suppress_embeds` (_boolean_): Do not include any embeds when serializing
+    this message (default: `false`).
+  - `.suppress_notifications` (_boolean_): This message will not trigger push
+    and desktop notifications (default: `false`).
+- `verbose` (_boolean_): Whether to print verbose messages during the process (useful for debugging) (default: `false`).
 
 ## Usage Examples
 
@@ -130,6 +132,34 @@ jobs:
             http://my.concourse.url/teams/${BUILD_TEAM_NAME}/pipelines/${BUILD_PIPELINE_NAME}/jobs/${BUILD_JOB_NAME}/builds/${BUILD_NAME}
             or at:
             http://my.concourse.url/builds/${BUILD_ID}
+```
+
+**With all parameters**
+
+```yaml
+jobs:
+  - name: discord-send
+    plan:
+      - put: discord-notification
+        params:
+          content: |
+            The build had a result. Check it out at:
+            http://my.concourse.url/teams/${BUILD_TEAM_NAME}/pipelines/${BUILD_PIPELINE_NAME}/jobs/${BUILD_JOB_NAME}/builds/${BUILD_NAME}
+            or at:
+            http://my.concourse.url/builds/${BUILD_ID}
+          username: ConcourseCI
+          avatar_url: https://github.com/cloudfoundry-community.png
+          allowed_mentions:
+            roles:
+              - 123456789012345678
+              - 234567890123456789
+            users:
+              - 345678901234567890
+              - 456789012345678901
+          flags:
+            suppress_embeds: false
+            suppress_notifications: false
+          verbose: true
 ```
 
 ## Buy us some doughnuts

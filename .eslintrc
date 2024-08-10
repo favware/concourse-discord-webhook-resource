@@ -11,7 +11,7 @@
 		"plugin:prettier/recommended"
 	],
 	"parserOptions": {
-		"project": "./tsconfig.json"
+		"project": "./tsconfig.base.json"
 	},
 	"rules": {
 		"n/no-sync": "off",

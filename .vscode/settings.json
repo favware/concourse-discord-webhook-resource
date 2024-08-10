@@ -3,5 +3,10 @@
 		"source.fixAll": "explicit",
 		"source.fixAll.eslint": "explicit",
 		"source.organizeImports": "never"
+	},
+	"files.associations": {
+		"concourse/check": "shellscript",
+		"concourse/in": "shellscript",
+		"concourse/out": "shellscript"
 	}
 }
