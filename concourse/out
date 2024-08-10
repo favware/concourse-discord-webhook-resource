@@ -55,6 +55,19 @@ if [ $allowed_users_count -gt 0 ]; then
   done
 fi
 
+echo "input
+    --webhook-url \"${webhook_url}\"
+    --allow-insecure \"${allow_insecure}\"
+    --proxy \"${proxy}\"
+    --content \"${content}\"
+    --username \"${username}\"
+    --avatar-url \"${avatar_url}\"
+    ${allowed_role_mentions_options}
+    ${allowed_user_mentions_options}
+    --suppress-embeds \"${suppress_embeds}\"
+    --suppress-notifications \"${suppress_notifications}\"
+    --verbose \"${verbose}\""
+
 node /usr/src/app/dist/index.js \
     --webhook-url "${webhook_url}" \
     --allow-insecure "${allow_insecure}" \
