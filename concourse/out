@@ -41,9 +41,8 @@ allowed_role_mentions_options=""
 
 allowed_roles_count=$(echo $allowed_role_mentions | jq '. | length')
 if [ $allowed_roles_count -gt 0 ]; then
-  echo "in the if"
   for i in $(seq 0 $(($allowed_roles_count - 1))); do
-    allowed_role_mentions_options="${allowed_role_mentions_options}$(echo "--allowed-role-mentions \"$(echo $allowed_role_mentions | jq -r ".[$i]")\" ")"
+    allowed_role_mentions_options="${allowed_role_mentions_options}$(echo "--allowed-role-mentions $(echo $allowed_role_mentions | jq -r ".[$i]") ")"
   done
 fi
 
@@ -51,9 +50,8 @@ allowed_user_mentions_options=""
 
 allowed_users_count=$(echo $allowed_user_mentions | jq '. | length')
 if [ $allowed_users_count -gt 0 ]; then
-  echo "in the if"
   for i in $(seq 0 $(($allowed_users_count - 1))); do
-    allowed_user_mentions_options="${allowed_user_mentions_options}$(echo "--allowed-user-mentions \"$(echo $allowed_user_mentions | jq -r ".[$i]")\" ")"
+    allowed_user_mentions_options="${allowed_user_mentions_options}$(echo "--allowed-user-mentions $(echo $allowed_user_mentions | jq -r ".[$i]") ")"
   done
 fi
 
