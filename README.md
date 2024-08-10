@@ -132,6 +132,12 @@ To insert these values, use the following syntax: `${BUILD_ID}` or `$BUILD_ID`
     (default: `[]`).
   - `.users` (_array of strings_): Users that are allowed to be mentioned
     (default: `[]`).
+
+> [!IMPORTANT]
+>
+> Make sure to wrap these values in quotes to prevent YAML from interpreting
+> them as numbers and performing invalid rounding operation.
+
 - `flags` (_object_): An object of the allowed values from
   [message flags](https://discord.com/developers/docs/resources/message#message-object-message-flags)
   - `.suppress_embeds` (_boolean_): Do not include any embeds when serializing
