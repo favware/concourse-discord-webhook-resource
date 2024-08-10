@@ -15,7 +15,7 @@ payload=$(mktemp /tmp/resource-in.XXXXXX)
 
 cat > "${payload}" <&0
 
-echo "Payload: ${payload}"
+echo "Payload: $(cat ${payload})"
 
 timestamp="$(jq -n "{version:{timestamp:\"$(date +%s)\"}}")"
 
