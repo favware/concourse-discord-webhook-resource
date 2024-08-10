@@ -15,11 +15,7 @@ payload=$(mktemp /tmp/resource-in.XXXXXX)
 
 cat > "${payload}" <&0
 
-echo "Payload: $(cat ${payload})"
-
 timestamp="$(jq -n "{version:{timestamp:\"$(date +%s)\"}}")"
-
-echo "Timestamp: ${timestamp}"
 
 disable="$(jq -r '.source.disable' < "${payload}")"
 if [[ "$disable" == "true" ]]
@@ -41,18 +37,6 @@ suppress_embeds="$(jq '(.params.flags.suppress_embeds // "false")' < "${payload}
 suppress_notifications="$(jq '(.params.flags.suppress_notifications // "false")' < "${payload}")"
 verbose="$(jq '(.params.verbose // "false")' < "${payload}")"
 
-echo "webhook_url: ${webhook_url}"
-echo "allow_insecure: ${allow_insecure}"
-echo "proxy: ${proxy}"
-echo "content: ${content}"
-echo "username: ${username}"
-echo "avatar_url: ${avatar_url}"
-echo "allowed_role_mentions: ${allowed_role_mentions}"
-echo "allowed_user_mentions: ${allowed_user_mentions}"
-echo "suppress_embeds: ${suppress_embeds}"
-echo "suppress_notifications: ${suppress_notifications}"
-echo "verbose: ${verbose}"
-
 allowed_role_mentions_options=""
 
 allowed_roles_count=$(echo $allowed_role_mentions | jq '. | length')
@@ -73,15 +57,6 @@ if [ $allowed_users_count -gt 0 ]; then
   done
 fi
 
-echo "allowed_role_mentions_options: ${allowed_role_mentions_options}"
-echo "allowed_user_mentions_options: ${allowed_user_mentions_options}"
-
-echo "--------------------------------------------------------------------------------------"
-
-printenv
-
-echo "--------------------------------------------------------------------------------------"
-
 node /usr/src/app/dist/index.js \
     --webhook-url "${webhook_url}" \
     --allow-insecure "${allow_insecure}" \
@@ -94,3 +69,5 @@ node /usr/src/app/dist/index.js \
     --suppress-embeds "${suppress_embeds}" \
     --suppress-notifications "${suppress_notifications}" \
     --verbose "${verbose}"
+
+echo "$timestamp" | jq -s add >&3
