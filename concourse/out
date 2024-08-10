@@ -66,6 +66,6 @@ node /usr/src/app/dist/index.js \
     ${allowed_user_mentions_options} \
     --suppress-embeds ${suppress_embeds} \
     --suppress-notifications ${suppress_notifications} \
-    --verbose ${verbose} >&3
+    --verbose ${verbose}
 
 echo "$timestamp" | jq -s add >&3
