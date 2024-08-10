@@ -109,20 +109,21 @@ https://discord.com/developers/docs/resources/webhook#execute-webhook.**
   characters). For formatting your content see
   [Markdown Text 101](https://support.discord.com/hc/en-us/articles/210298617-Markdown-Text-101-Chat-Formatting-Bold-Italic-Underline).
 
-You can add the following parameters in your content that will be replaced with
-their respective ConcourseCI values:
-
-- ATC_EXTERNAL_URL - The external URL to your ConcourseCI instance
-- BUILD_ID - The ID of the build
-- BUILD_JOB_ID - The ID of the job
-- BUILD_JOB_NAME - The name of the job
-- BUILD_NAME - The name of the build
-- BUILD_PIPELINE_ID - The ID of the pipeline
-- BUILD_PIPELINE_NAME - The name of the pipeline
-- BUILD_TEAM_ID - The ID of the team
-- BUILD_TEAM_NAME - The name of the team
-
-To insert these values, use the following syntax: `${BUILD_ID}` or `$BUILD_ID`
+> [!NOTE]
+>
+> You can add the following parameters in your content that will be replaced
+> with their respective ConcourseCI values:
+>
+> - `ATC_EXTERNAL_URL` - The external URL to your ConcourseCI instance
+> - `BUILD_ID` - The ID of the build
+> - `BUILD_JOB_ID` - The ID of the job
+> - `BUILD_JOB_NAME` - The name of the job
+> - `BUILD_NAME` - The name of the build
+> - `BUILD_PIPELINE_ID` - The ID of the pipeline
+> - `BUILD_PIPELINE_NAME` - The name of the pipeline
+> - `BUILD_TEAM_ID` - The ID of the team
+> - `BUILD_TEAM_NAME` - The name of the team To insert these values, use the
+>   following syntax: `${BUILD_ID}` or `$BUILD_ID`
 
 - `username` (_string_): Override the default username of the webhook
 - `avatar_url` (_string)_: Any text wanted to ultimately appear on the page as
@@ -156,13 +157,13 @@ jobs:
       - put: discord-notification
         params:
           content: |
-            The build had a result. Check it out at:
+            Job `${BUILD_JOB_NAME}` in `${BUILD_PIPELINE_NAME}` had a result. Check it out at:
             ${ATC_EXTERNAL_URL}/teams/${BUILD_TEAM_NAME}/pipelines/${BUILD_PIPELINE_NAME}/jobs/${BUILD_JOB_NAME}/builds/${BUILD_NAME}
             or at:
             ${ATC_EXTERNAL_URL}/builds/${BUILD_ID}
 ```
 
-**With all parameters**
+**With additional parameters**
 
 ```yaml
 jobs:
@@ -171,7 +172,7 @@ jobs:
       - put: discord-notification
         params:
           content: |
-            The build had a result. Check it out at:
+            Job `${BUILD_JOB_NAME}` in `${BUILD_PIPELINE_NAME}` had a result. Check it out at:
             ${ATC_EXTERNAL_URL}/teams/${BUILD_TEAM_NAME}/pipelines/${BUILD_PIPELINE_NAME}/jobs/${BUILD_JOB_NAME}/builds/${BUILD_NAME}
             or at:
             ${ATC_EXTERNAL_URL}/builds/${BUILD_ID}
@@ -179,15 +180,13 @@ jobs:
           avatar_url: https://github.com/cloudfoundry-community.png
           allowed_mentions:
             roles:
-              - 123456789012345678
-              - 234567890123456789
+              - '123456789012345678'
+              - '234567890123456789'
             users:
-              - 345678901234567890
-              - 456789012345678901
+              - '345678901234567890'
+              - '456789012345678901'
           flags:
-            suppress_embeds: false
-            suppress_notifications: false
-          verbose: true
+            suppress_notifications: true
 ```
 
 ## Buy us some doughnuts
