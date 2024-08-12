@@ -59,10 +59,10 @@ configure the URL in the resource configuration.
   Always in the format: `https://discord.com/api/webhooks/XXXX/ZZZZ` wherein
   `XXXX` is the webhook ID and `ZZZZ` is the webhook token.
 
-- `insecure`: _Optional._ Connect to Slack insecurely - i.e. skip SSL
+- `insecure`: _Optional._ Connect to Discord insecurely - i.e. skip SSL
   validation. Defaults to `false` if not provided.
 
-- `proxy`: _Optional._ Connect to Slack using an HTTP(S) proxy. In the form:
+- `proxy`: _Optional._ Connect to Discord using an HTTP(S) proxy. In the form:
   `http://my.proxy:3128`.
 
 - `disable`: _Optional._ Set to `true` to skip all messaging. Convenient for
