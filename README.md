@@ -74,7 +74,7 @@ configure the URL in the resource configuration.
 resources:
   - name: discord-notification
     type: discord-webhook-resource
-    icon: discord
+    icon: chat
     check_every: 24h
     source:
       url: https://discord.com/api/webhooks/XXXX/ZZZZ
