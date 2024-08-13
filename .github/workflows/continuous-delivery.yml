@@ -36,7 +36,7 @@ jobs:
           platforms: |
             linux/amd64
             linux/arm64
-          tags: ghcr.io/favware/concource-discord-webhook-resource:alpha
+          tags: ghcr.io/favware/concourse-discord-webhook-resource:alpha
 
   PublishTaskRunner:
     name: Publish Task Runner image to container registry
@@ -63,4 +63,4 @@ jobs:
           platforms: |
             linux/amd64
             linux/arm64
-          tags: ghcr.io/favware/concource-taskrunner:alpha
+          tags: ghcr.io/favware/concourse-taskrunner:alpha

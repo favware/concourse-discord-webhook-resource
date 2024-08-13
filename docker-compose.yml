@@ -1,6 +1,6 @@
 services:
   dev:
-    image: ghcr.io/favware/concource-discord-webhook-resource:dev
+    image: ghcr.io/favware/concourse-discord-webhook-resource:dev
     container_name: concourse-discord-webhook-resource-dev
     build: .
     tty: true
@@ -8,7 +8,7 @@ services:
     command: /bin/bash
 
   taskrunner:
-    image: ghcr.io/favware/concource-taskrunner:dev
+    image: ghcr.io/favware/concourse-taskrunner:dev
     build:
       context: .
       dockerfile: Dockerfile.taskrunner
