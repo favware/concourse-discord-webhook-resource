@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.0.1](https://github.com/favware/concourse-discord-webhook-resource/compare/v1.0.0...v1.0.1) - (2024-08-13)
+
+## 🐛 Bug Fixes
+
+- Fixed image name `concource` -> `concourse` ([fc01623](https://github.com/favware/concourse-discord-webhook-resource/commit/fc01623022852c9f39b472021c2681d1c2f00e02))
+
+## 📝 Documentation
+
+- **readme:** Fix icon in example ([7ad8e61](https://github.com/favware/concourse-discord-webhook-resource/commit/7ad8e611ccfc4b3023ecda5bc8b6d238cfc11820))
+- **readme:** Change slack for discord ([ce32501](https://github.com/favware/concourse-discord-webhook-resource/commit/ce32501460aaff3827d9cb18767c6e275cf18896))
+
 # [1.0.0](https://github.com/favware/concourse-discord-webhook-resource/tree/v1.0.0) - (2024-08-10)
 
 ## 🐛 Bug Fixes
