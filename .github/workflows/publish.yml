@@ -10,7 +10,7 @@ on:
 
 jobs:
   PublishVersion:
-    name: Publish @favware/discord-application-emojis-manager
+    name: Publish favware/concourse-discord-webhook-resource
     runs-on: ubuntu-latest
     if: github.repository_owner == 'favware'
     outputs:
