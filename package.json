@@ -67,7 +67,7 @@
 	},
 	"lint-staged": {
 		"*": "prettier --ignore-unknown --write",
-		"*.{mjs,js,ts,tsx}": "eslint --fix --ext mjs,js,ts,tsx"
+		"*.{mjs,js,ts,tsx}": "eslint --fix"
 	},
 	"packageManager": "yarn@4.4.1"
 }
