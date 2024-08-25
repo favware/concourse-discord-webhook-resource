@@ -1,6 +1,6 @@
-import { container } from '#lib/utils/container';
-import type { OptionsType } from '#root/index';
 import { exit } from 'node:process';
+import type { OptionsType } from '#root/index';
+import { container } from '#lib/utils/container';
 
 export interface CheckedOptionsType {
 	'allow-insecure': boolean;

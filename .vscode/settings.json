@@ -3,5 +3,6 @@
 		"concourse/check": "shellscript",
 		"concourse/in": "shellscript",
 		"concourse/out": "shellscript"
-	}
+	},
+	"eslint.useFlatConfig": true
 }

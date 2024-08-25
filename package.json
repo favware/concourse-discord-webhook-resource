@@ -15,7 +15,7 @@
 	"scripts": {
 		"typecheck": "tsc -b src",
 		"build": "tsup",
-		"lint": "eslint --format=pretty --ext ts --fix src",
+		"lint": "eslint --format=pretty --fix",
 		"format": "prettier --log-level=warn --write .",
 		"bump": "cliff-jumper",
 		"check-update": "cliff-jumper --dry-run"
@@ -23,19 +23,19 @@
 	"dependencies": {
 		"@discordjs/rest": "^2.3.0",
 		"@skyra/logger": "^2.0.3",
-		"discord-api-types": "^0.37.94",
-		"undici": "^6.19.7"
+		"discord-api-types": "^0.37.97",
+		"undici": "^6.19.8"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^19.4.0",
 		"@commitlint/config-conventional": "^19.2.2",
-		"@favware/cliff-jumper": "^4.0.3",
+		"@favware/cliff-jumper": "^4.1.0",
 		"@sapphire/prettier-config": "^2.0.0",
 		"@sapphire/ts-config": "^5.0.1",
-		"@types/node": "^22.4.0",
-		"eslint": "^8.57.0",
-		"eslint-config-neon": "^0.1.62",
-		"eslint-formatter-pretty": "5.0.0",
+		"@types/node": "^22.5.0",
+		"eslint": "^9.9.1",
+		"eslint-config-neon": "^0.2.0",
+		"eslint-formatter-pretty": "6.0.1",
 		"eslint-plugin-prettier": "^5.2.1",
 		"lint-staged": "^15.2.9",
 		"prettier": "^3.3.3",
@@ -67,7 +67,7 @@
 	},
 	"lint-staged": {
 		"*": "prettier --ignore-unknown --write",
-		"*.{mjs,js,ts,tsx}": "eslint --fix --ext mjs,js,ts,tsx"
+		"*.{mjs,js,ts,tsx}": "eslint --fix"
 	},
-	"packageManager": "yarn@4.4.0"
+	"packageManager": "yarn@4.4.1"
 }

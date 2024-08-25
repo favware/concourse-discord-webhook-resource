@@ -1,13 +1,13 @@
+import { exit } from 'node:process';
+import { inspect, parseArgs } from 'node:util';
+import { REST } from '@discordjs/rest';
+import { MessageFlags, Routes, type RESTPostAPIWebhookWithTokenJSONBody } from 'discord-api-types/v10';
 import { container } from '#lib/utils/container';
 import { getProxyAgent } from '#lib/utils/getProxyAgent';
 import { insertEnvVars } from '#lib/utils/insertEnvVars';
 import { obfuscateWebhookUrl, UnboundWebhookRegex } from '#lib/utils/obfuscateWebhookUrl';
 import { preflightChecks } from '#lib/utils/preflightChecks';
 import { logResolvedOptions, setupLogger } from '#lib/utils/setup-logger';
-import { REST } from '@discordjs/rest';
-import { MessageFlags, Routes, type RESTPostAPIWebhookWithTokenJSONBody } from 'discord-api-types/v10';
-import { exit } from 'node:process';
-import { inspect, parseArgs } from 'node:util';
 
 export type OptionsType = typeof values;
 
