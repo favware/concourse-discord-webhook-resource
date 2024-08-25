@@ -23,7 +23,7 @@ const config = [
 				}
 			},
 			rules: {
-				'import/order': 'off',
+				'import-x/order': 'off',
 				'@typescript-eslint/consistent-type-definitions': 'off'
 			}
 		})
