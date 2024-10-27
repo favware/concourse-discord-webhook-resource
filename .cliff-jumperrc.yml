@@ -7,5 +7,6 @@ identifierBase: false
 pushTag: true
 githubRelease: true
 githubReleaseLatest: true
-githubRepo: auto
+gitRepo: auto
 githubReleaseNameTemplate: '{{new-version}}'
+gitHostVariant: github
