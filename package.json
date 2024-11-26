@@ -27,18 +27,18 @@
 		"undici": "6.19.8"
 	},
 	"devDependencies": {
-		"@commitlint/cli": "^19.5.0",
-		"@commitlint/config-conventional": "^19.5.0",
+		"@commitlint/cli": "^19.6.0",
+		"@commitlint/config-conventional": "^19.6.0",
 		"@favware/cliff-jumper": "^5.0.0",
 		"@sapphire/prettier-config": "^2.0.0",
 		"@sapphire/ts-config": "^5.0.1",
-		"@types/node": "^22.9.0",
-		"eslint": "^9.14.0",
-		"eslint-config-neon": "^0.2.0",
+		"@types/node": "^22.10.0",
+		"eslint": "^9.15.0",
+		"eslint-config-neon": "^0.2.3",
 		"eslint-formatter-pretty": "6.0.1",
 		"eslint-plugin-prettier": "^5.2.1",
 		"lint-staged": "^15.2.10",
-		"prettier": "^3.3.3",
+		"prettier": "^3.4.0",
 		"tsup": "^8.3.5",
 		"typescript": "^5.6.3"
 	},
@@ -50,10 +50,7 @@
 		"astro-eslint-parser": "npm:@favware/skip-dependency@latest",
 		"eslint-plugin-astro": "npm:@favware/skip-dependency@latest",
 		"eslint-plugin-cypress": "npm:@favware/skip-dependency@latest",
-		"eslint-plugin-jsx-a11y": "npm:@favware/skip-dependency@latest",
 		"eslint-plugin-mdx": "npm:@favware/skip-dependency@latest",
-		"eslint-plugin-react-hooks": "npm:@favware/skip-dependency@latest",
-		"eslint-plugin-react": "npm:@favware/skip-dependency@latest",
 		"eslint-plugin-rxjs-angular": "npm:@favware/skip-dependency@latest",
 		"eslint-plugin-rxjs": "npm:@favware/skip-dependency@latest",
 		"eslint-plugin-svelte3": "npm:@favware/skip-dependency@latest",
@@ -69,5 +66,5 @@
 		"*": "prettier --ignore-unknown --write",
 		"*.{mjs,js,ts,tsx}": "eslint --fix"
 	},
-	"packageManager": "yarn@4.5.1"
+	"packageManager": "yarn@4.5.3"
 }
