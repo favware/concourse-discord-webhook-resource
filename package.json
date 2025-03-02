@@ -32,14 +32,14 @@
 		"@favware/cliff-jumper": "^6.0.0",
 		"@sapphire/prettier-config": "^2.0.0",
 		"@sapphire/ts-config": "^5.0.1",
-		"@types/node": "^22.13.5",
+		"@types/node": "^22.13.8",
 		"eslint": "^9.21.0",
 		"eslint-config-neon": "^0.2.4",
 		"eslint-formatter-pretty": "6.0.1",
 		"eslint-plugin-prettier": "^5.2.3",
 		"lint-staged": "^15.4.3",
 		"prettier": "^3.5.2",
-		"tsup": "^8.3.6",
+		"tsup": "^8.4.0",
 		"typescript": "^5.7.3"
 	},
 	"resolutions": {
@@ -66,5 +66,5 @@
 		"*": "prettier --ignore-unknown --write",
 		"*.{mjs,js,ts,tsx}": "eslint --fix"
 	},
-	"packageManager": "yarn@4.6.0"
+	"packageManager": "yarn@4.7.0"
 }
