@@ -21,23 +21,23 @@
 		"check-update": "cliff-jumper --dry-run"
 	},
 	"dependencies": {
-		"@discordjs/rest": "^2.4.3",
+		"@discordjs/rest": "^2.5.0",
 		"@skyra/logger": "^2.0.3",
 		"discord-api-types": "0.37.119",
 		"undici": "6.21.1"
 	},
 	"devDependencies": {
-		"@commitlint/cli": "^19.8.0",
-		"@commitlint/config-conventional": "^19.8.0",
+		"@commitlint/cli": "^19.8.1",
+		"@commitlint/config-conventional": "^19.8.1",
 		"@favware/cliff-jumper": "^6.0.0",
 		"@sapphire/prettier-config": "^2.0.0",
 		"@sapphire/ts-config": "^5.0.1",
-		"@types/node": "^22.14.1",
-		"eslint": "^9.24.0",
+		"@types/node": "^22.15.17",
+		"eslint": "^9.26.0",
 		"eslint-config-neon": "^0.2.7",
 		"eslint-formatter-pretty": "6.0.1",
-		"eslint-plugin-prettier": "^5.2.6",
-		"lint-staged": "^15.5.1",
+		"eslint-plugin-prettier": "^5.4.0",
+		"lint-staged": "^15.5.2",
 		"prettier": "^3.5.3",
 		"tsup": "^8.4.0",
 		"typescript": "^5.7.3"
@@ -66,5 +66,5 @@
 		"*": "prettier --ignore-unknown --write",
 		"*.{mjs,js,ts,tsx}": "eslint --fix"
 	},
-	"packageManager": "yarn@4.9.0"
+	"packageManager": "yarn@4.9.1"
 }
