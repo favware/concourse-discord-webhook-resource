@@ -24,7 +24,7 @@
 		"@discordjs/rest": "^2.5.0",
 		"@skyra/logger": "^2.0.3",
 		"discord-api-types": "0.37.119",
-		"undici": "6.21.1"
+		"undici": "6.21.2"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^19.8.1",
