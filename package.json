@@ -33,11 +33,11 @@
 		"@sapphire/prettier-config": "^2.0.0",
 		"@sapphire/ts-config": "^5.0.1",
 		"@types/node": "^22.15.31",
-		"eslint": "^9.28.0",
+		"eslint": "^9.29.0",
 		"eslint-config-neon": "^0.2.7",
 		"eslint-formatter-pretty": "6.0.1",
 		"eslint-plugin-prettier": "^5.4.1",
-		"lint-staged": "^16.1.0",
+		"lint-staged": "^16.1.1",
 		"prettier": "^3.5.3",
 		"tsup": "^8.5.0",
 		"typescript": "^5.7.3"
