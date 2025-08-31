@@ -32,7 +32,7 @@
 		"@favware/cliff-jumper": "^6.0.0",
 		"@sapphire/prettier-config": "^2.0.0",
 		"@sapphire/ts-config": "^5.0.1",
-		"@types/node": "^22.17.2",
+		"@types/node": "^22.18.0",
 		"eslint": "^9.34.0",
 		"eslint-config-neon": "^0.2.7",
 		"eslint-formatter-pretty": "6.0.1",
@@ -66,5 +66,5 @@
 		"*": "prettier --ignore-unknown --write",
 		"*.{mjs,js,ts,tsx}": "eslint --fix"
 	},
-	"packageManager": "yarn@4.9.3"
+	"packageManager": "yarn@4.9.4"
 }
