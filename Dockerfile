@@ -1,6 +1,6 @@
 ## Base state ##
 
-FROM node:22-alpine3.20 AS base
+FROM node:24-alpine3.20 AS base
 
 WORKDIR /usr/src/app
 
