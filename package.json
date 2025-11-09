@@ -33,7 +33,7 @@
 		"@sapphire/prettier-config": "^2.0.0",
 		"@sapphire/ts-config": "^5.0.1",
 		"@types/node": "^24.10.0",
-		"eslint": "^9.39.0",
+		"eslint": "^9.39.1",
 		"eslint-config-neon": "^0.2.9",
 		"eslint-formatter-pretty": "7.0.0",
 		"eslint-plugin-prettier": "^5.5.4",
@@ -66,5 +66,5 @@
 		"*": "prettier --ignore-unknown --write",
 		"*.{mjs,js,ts,tsx}": "eslint --fix"
 	},
-	"packageManager": "yarn@4.10.3"
+	"packageManager": "yarn@4.11.0"
 }
